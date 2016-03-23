@@ -46,7 +46,10 @@ function mysite_search_form_search_form_alter(&$form, &$form_state) {
 
 /**
  * Implements hook_query_TAG_alter(). For search_node (search system on ../search/node/...) - effects search-result.tpl.php
- * Make sure we only return calendar items with a FROM date (starting time of the event) that is current or after current date.
+ * Make sure we only return calendar items with a FROM date (starting time of the event) that is current or after current date. 
+ * 
+ * We need to do a join on the with the node table and the field_data_field_date table, that way we get a reference to the FROM and the TO fields
+ * that are associated with Event Items
  * 
  */
 function mysite_search_query_search_node_alter(QueryAlterableInterface &$query) {    
